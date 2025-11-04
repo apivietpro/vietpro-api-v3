@@ -6,6 +6,10 @@ const redisClient = require("../common/init.redis");
 const app = express();
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(
+  config.get("app.static.urlPath"),
+  express.static(config.get("app.static.folderPath"))
+);
 
 app.use(config.get("app.prefixApiVersion"), require("../routers/web"));
 module.exports = app;
