@@ -42,10 +42,13 @@ exports.findProductsByCategory = async (req, res) => {
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     const skip = page * limit - limit;
-    const products = await ProductModel.find({ query })
+    console.log(query);
+
+    const products = await ProductModel.find(query)
       .sort({ _id: -1 })
       .skip(skip)
       .limit(limit);
+    console.log(products);
     return res.status(200).json({
       status: "success",
       message: "Get products successfully",
