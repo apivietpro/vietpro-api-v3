@@ -54,6 +54,10 @@ router.get(
 
 router.get("/categories", CategoryController.findAll);
 router.get("/categories/:id", CategoryController.findOne);
+router.get(
+  "/categories/:id/products",
+  CategoryController.findProductsByCategory
+);
 router.get("/products", ProductController.findAll);
 router.get("/products/:id/comments", CommentController.findByProductId);
 router.post("/products/:id/comments", CommentController.create);
