@@ -1,18 +1,19 @@
 module.exports = async (page, limit, query, model) => {
-  const docs = await model.find(query).countDocuments();
-  const total = Math.ceil(docs / limit);
-  const next = page + 1;
-  const prev = page - 1;
-  const hasNext = next > total ? false : true;
-  const hasPrev = prev <= 0 ? false : true;
+  const totalItems = await model.find(query).countDocuments();
+  const totalPages = Math.ceil(totalItems / limit);
+  const nextPage = page + 1;
+  const prevPage = page - 1;
+  const hasNextPage = nextPage > totalPages ? false : true;
+  const hasPrevPage = prevPage <= 0 ? false : true;
 
   return {
     page,
     limit,
-    total,
-    next,
-    prev,
-    hasNext,
-    hasPrev,
+    totalPages,
+    totalItems,
+    nextPage,
+    prevPage,
+    hasNextPage,
+    hasPrevPage,
   };
 };
