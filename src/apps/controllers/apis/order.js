@@ -81,7 +81,7 @@ exports.findByCustomerId = async (req, res) => {
     const page = Number(req.query.page) || 1;
     const limit = Number(req.query.limit) || 10;
     const skip = page * limit - limit;
-    const orders = await OrderModel.find()
+    const orders = await OrderModel.find(query)
       .skip(skip)
       .limit(limit)
       .sort({ _id: -1 });
