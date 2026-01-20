@@ -35,6 +35,7 @@ const orderSchema = new mongoose.Schema(
       {
         prd_id: {
           type: mongoose.Types.ObjectId,
+          ref: "Products",
           required: true,
         },
         qty: {

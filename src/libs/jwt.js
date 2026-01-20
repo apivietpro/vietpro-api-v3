@@ -7,7 +7,7 @@ exports.generateAccessToken = async (payload) =>
       email: payload.email,
     },
     config.get("app.jwtAccessKey"),
-    { expiresIn: "1000m" }
+    { expiresIn: "100m" }
   );
 exports.generateRefreshToken = async (payload) =>
   await jwt.sign(
