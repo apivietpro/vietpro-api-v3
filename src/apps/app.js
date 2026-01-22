@@ -16,7 +16,7 @@ app.use(
     origin: config.get("app.cors.origin"), // Tự động phản hồi đúng origin request đến
     credentials: config.get("app.cors.credentials"), // Cho phép gửi cookie, auth headers
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    // allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
