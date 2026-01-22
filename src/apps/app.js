@@ -20,14 +20,5 @@ app.use(
   }),
 );
 
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000",
-//     credentials: true,
-//     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   }),
-// );
-
 app.use(config.get("app.prefixApiVersion"), require("../routers/web"));
 module.exports = app;
