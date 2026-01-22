@@ -85,10 +85,11 @@ exports.login = async (req, res) => {
       // Response Token & Customer
       res.cookie("refreshToken", refreshToken, {
         httpOnly: true,
-        secure: false,
-        sameSite: "Strict",
-        maxAg: 24 * 60 * 60 * 1000,
+        secure: true, // BẮT BUỘC
+        sameSite: "None", // BẮT BUỘC
+        maxAge: 24 * 60 * 60 * 1000,
       });
+
       return res.status(200).json({
         status: "success",
         message: "Logged in successfully",
