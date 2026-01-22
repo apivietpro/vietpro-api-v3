@@ -11,21 +11,23 @@ app.use(
   config.get("app.static.urlPath"),
   express.static(config.get("app.static.folderPath")),
 );
-// app.use(
-//   cors({
-//     origin: config.get("app.cors.origin"), // Tự động phản hồi đúng origin request đến
-//     credentials: config.get("app.cors.credentials"), // Cho phép gửi cookie, auth headers
-//   })
-// );
-
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: config.get("app.cors.origin"), // Tự động phản hồi đúng origin request đến
+    credentials: config.get("app.cors.credentials"), // Cho phép gửi cookie, auth headers
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   }),
+// );
 
 app.use(config.get("app.prefixApiVersion"), require("../routers/web"));
 module.exports = app;
