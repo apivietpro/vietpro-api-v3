@@ -7,7 +7,6 @@ module.exports = {
   },
   cors: {
     origin: true,
-    // origin: "http://localhost:3000",
     credentials: true,
   },
   jwtAccessKey: process.env.JWT_ACCESS_KEY || "vietpro_access_key",

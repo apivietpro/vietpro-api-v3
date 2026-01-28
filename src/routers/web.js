@@ -7,6 +7,7 @@ const ProductController = require("../apps/controllers/apis/product");
 const OrderController = require("../apps/controllers/apis/order");
 const CommentController = require("../apps/controllers/apis/comment");
 const CustomerAuthController = require("../apps/controllers/apis/customerAuth");
+const CustomerController = require("../apps/controllers/apis/customer");
 const BannerController = require("../apps/controllers/apis/banner");
 const SliderController = require("../apps/controllers/apis/slider");
 
@@ -30,35 +31,40 @@ const {
 router.post(
   "/auth/customers/register",
   registerValidator,
-  CustomerAuthController.register
+  CustomerAuthController.register,
 );
 router.post(
   "/auth/customers/login",
   loginRules,
   loginValidator,
-  CustomerAuthController.login
+  CustomerAuthController.login,
 );
 router.post(
   "/auth/customers/logout",
   verifyAccessToken,
-  CustomerAuthController.logout
+  CustomerAuthController.logout,
 );
 router.post(
   "/auth/customers/refresh",
   verifyRefreshToken,
-  CustomerAuthController.resfreshToken
+  CustomerAuthController.resfreshToken,
 );
 router.get(
   "/auth/customers/me",
   verifyAccessToken,
-  CustomerAuthController.getMe
+  CustomerAuthController.getMe,
+);
+router.put(
+  "/customers/me",
+  verifyAccessToken,
+  CustomerController.updateMyProfile,
 );
 
 router.get("/categories", CategoryController.findAll);
 router.get("/categories/:id", CategoryController.findOne);
 router.get(
   "/categories/:id/products",
-  CategoryController.findProductsByCategory
+  CategoryController.findProductsByCategory,
 );
 router.get("/products", ProductController.findAll);
 router.get("/products/:id/comments", CommentController.findByProductId);
@@ -73,18 +79,18 @@ router.post(
   verifyCustomer,
   createOrderRules,
   createOrderValidator,
-  OrderController.order
+  OrderController.order,
 );
 router.get(
   "/customers/orders",
   verifyAccessToken,
-  OrderController.findByCustomerId
+  OrderController.findByCustomerId,
 );
 router.get("/customers/orders/:id", verifyAccessToken, OrderController.findOne);
 router.patch(
   "/customers/orders/:id/cancel",
   verifyAccessToken,
-  OrderController.cancel
+  OrderController.cancel,
 );
 
 module.exports = router;
